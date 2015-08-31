@@ -1502,7 +1502,7 @@ plupload.Uploader = function(options) {
 
 			// Build multipart request
 			if (up.settings.multipart && features.multipart) {
-				xhr.open("post", url, true);
+				xhr.open(up.settings.http_method, url, true);
 
 				// Set custom headers
 				plupload.each(up.settings.headers, function(value, name) {
@@ -1529,7 +1529,7 @@ plupload.Uploader = function(options) {
 				// if no multipart, send as binary stream
 				url = plupload.buildUrl(up.settings.url, plupload.extend(args, up.settings.multipart_params));
 
-				xhr.open("post", url, true);
+				xhr.open(up.settings.http_method, url, true);
 
 				xhr.setRequestHeader('Content-Type', 'application/octet-stream'); // Binary stream header
 
@@ -1659,6 +1659,7 @@ plupload.Uploader = function(options) {
 		runtimes: o.Runtime.order,
 		max_retries: 0,
 		chunk_size: 0,
+		http_method: 'post',
 		multipart: true,
 		multi_selection: true,
 		file_data_name: 'file',
