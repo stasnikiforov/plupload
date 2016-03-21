@@ -2288,7 +2288,9 @@ plupload.File = (function() {
 			destroy: function() {
 				var src = this.getSource();
 				if (src) {
-					src.destroy();
+					if (src.destroy) {
+						src.destroy();
+					}
 					delete filepool[this.id];
 				}
 			}
